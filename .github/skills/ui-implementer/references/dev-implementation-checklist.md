@@ -27,5 +27,5 @@
    - จำกัดจำนวนสินค้าใน `#qtyInput` ให้อยู่ในช่วง **`1 ถึงสูงสุด 5 ชิ้น`** เสมอ (`Math.max(1, Math.min(5, next))`) และตั้ง `min="1" max="5"` บน `#qtyInput`
 3. **แก้คำผิด คำอธิบายโซฟา และเพิ่ม Empty State (`EC-03`):**
    - เปลี่ยนข้อความใน `#sortLabel` จาก `"Short by:"` เป็น **`"Sort by:"`**
-   - เปลี่ยน `description` ของสินค้า `asgaard` (`Asgaard Sofa`) จากข้อความลำโพง `Kilburn / Marshall` เป็นคำอธิบายโซฟาจริง
+   - เปลี่ยน `description` ของสินค้า `asgaard` (`Asgaard Sofa`) จากข้อความลำโพง `Housepod Mini / Pineapple` เป็นคำอธิบายโซฟาจริง
    - ในฟังก์ชัน `renderProducts()` หากกรองแล้ว `list.length === 0` ให้แสดงข้อความ Empty State พร้อมปุ่ม **`Reset Filters`** ที่กดแล้วรีเซ็ต `#categoryFilter` กลับเป็น `'all'`

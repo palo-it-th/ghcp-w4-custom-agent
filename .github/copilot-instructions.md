@@ -1,7 +1,7 @@
 # กติกากลางของโปรเจกต์ Envydia Sprint 2 (Design-to-Delivery Studio)
 
 1. **ภาษาและรูปแบบเอกสาร:** ตอบและสรุปงานเป็นภาษาไทยที่กระชับ ชัดเจน แต่คงคำศัพท์เทคนิคภาษาอังกฤษที่ใช้ในทีม (เช่น `Acceptance Criteria`, `Test Case`, `Boundary Value`, `Change Request`, `SLA-Red`)
-2. **ความถูกต้องของกฎธุรกิจ:** ห้ามเดากฎเกณฑ์เงินมัดจำ ส่วนลด หรือจำนวนสินค้าสูงสุดเอง ต้องอ้างอิงจากเอกสารนโยบาย `docs/policies/finance-and-sla-policy.md` (`BR-01..03` และ `EC-01..03`) เสมอ
+2. **ความถูกต้องของ Business Rule:** ห้ามเดากฎเกณฑ์เงินมัดจำ ส่วนลด หรือจำนวนสินค้าสูงสุดเอง ต้องอ้างอิงจากเอกสารนโยบาย `docs/policies/finance-and-sla-policy.md` (`BR-01..03` และ `EC-01..03`) เสมอ
 3. **การเขียนโค้ด UI (สำหรับงาน Dev ใน `ui/preview.html`):**
    - ใช้ Semantic HTML5 (`main`, `section`, `header`, `nav`, `table`, `form`, `button`) และ CSS Custom Properties ใน `:root`
    - ทุก input ในฟอร์มต้องผูกกับ `<label>` หรือ `aria-label` เพื่อให้ทดสอบและใช้งานได้จริง

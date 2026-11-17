@@ -8,7 +8,7 @@ description: "ใช้เมื่อต้องเขียนตาราง
 เมื่อได้รับโจทย์ให้ออกแบบชุดทดสอบสำหรับ `CR-201` หรือ `CR-202`:
 
 1. **เปิดอ่านเอกสารนโยบายและตรวจโค้ดจริง:**
-   - อ่านกฎธุรกิจใน `docs/policies/finance-and-sla-policy.md` (`BR-01..03` หรือ `EC-01..03`) และใบงานใน `docs/change-requests/`
+   - อ่าน Business Rule ใน `docs/policies/finance-and-sla-policy.md` (`BR-01..03` หรือ `EC-01..03`) และใบงานใน `docs/change-requests/`
    - เปิดอ่านไฟล์ `ui/preview.html` เพื่อหาจุดที่โค้ด Sprint 1 ปัจจุบันยังทำงานขัดกับกฎ
 2. **ตรวจตามเกณฑ์ใน [QA BVA Checklist](references/qa-bva-checklist.md)**
 3. **จัดทำเอกสารตามโครงสร้างใน [Test Matrix Template](assets/test-matrix-template.md):**

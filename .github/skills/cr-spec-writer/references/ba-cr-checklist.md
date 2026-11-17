@@ -8,6 +8,6 @@
    - **สำหรับ `CR-202` (`Project ชานมหวานร้อย`):**
      - `EC-01`: เทียบโค้ดเดิมที่ยอมให้ `SWEET11` ลดซ้อนทุกชิ้น กับเกณฑ์ใหม่ (ลดเพิ่ม 10% เฉพาะสินค้าที่ป้ายลดเดิม `< 50%` ห้ามซ้อนทับโซฟา `Lolito` ที่ลด `-50%`)
      - `EC-02`: เทียบตัวนับจำนวนเดิม (`0–99`) กับเกณฑ์ใหม่ (`1 ถึงสูงสุด 5 ชิ้น` ต่อรายการ)
-     - `EC-03`: ระบุการแก้คำผิด `"Short by"` → `"Sort by"`, แก้คำอธิบาย `Asgaard Sofa` ที่หลุดข้อความลำโพง `Kilburn / Marshall` และเพิ่ม Empty State พร้อมปุ่ม `Reset Filters` เมื่อกรองหมวด `Lighting`
+     - `EC-03`: ระบุการแก้คำผิด `"Short by"` → `"Sort by"`, แก้คำอธิบาย `Asgaard Sofa` ที่หลุดข้อความลำโพง `Housepod Mini / Pineapple` และเพิ่ม Empty State พร้อมปุ่ม `Reset Filters` เมื่อกรองหมวด `Lighting`
 2. **Acceptance Criteria (Given / When / Then):**
    - เขียน AC ให้ครอบคลุมทุกช่วงตัวเลขเพื่อให้ QA นำไปเขียน Test Matrix และ Dev นำไปแก้ `ui/preview.html` ได้ทันที

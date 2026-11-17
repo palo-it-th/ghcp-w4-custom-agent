@@ -8,7 +8,7 @@ skills: ['cr-spec-writer']
 handoffs:
   - label: "Hand off to Dev Builder (ส่ง Spec ให้ Dev แก้โค้ด)"
     agent: dev-builder
-    prompt: "จาก BA Change Request Specification ที่เพิ่งเขียนเสร็จ ช่วยใช้ Skill ui-implementer แก้ไขโค้ดใน ui/preview.html ให้ตรงตาม Acceptance Criteria และกฎธุรกิจใน Spec ข้างต้น"
+    prompt: "จาก BA Change Request Specification ที่เพิ่งเขียนเสร็จ ช่วยใช้ Skill ui-implementer แก้ไขโค้ดใน ui/preview.html ให้ตรงตาม Acceptance Criteria และ Business Rule ใน Spec ข้างต้น"
     send: false
   - label: "Hand off to Release Auditor (ตรวจความถูกต้องของ Spec)"
     agent: release-auditor
