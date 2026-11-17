@@ -1,0 +1,5 @@
+{
+	"chat.tools.edits.autoApprove": {
+		"**/docs/frozen-scope/**": false
+	}
+}

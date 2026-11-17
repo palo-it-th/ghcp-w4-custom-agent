@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>W4 · Envydia Sprint 2 Go-Live Control Room (Custom Agents + Skills)</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main>
+  <span class="eyebrow">Workshop 4 · Custom Agents (.agent.md) + Agent Skills (SKILL.md)</span>
+  <h1>Envydia Sprint 2 · Go-Live Control Room</h1>
+  <p class="lead">ศูนย์ควบคุมการส่งมอบงานก่อนขึ้น Production สำหรับสาย <b>BA (<code>ba-analyst</code>)</b>, <b>QA (<code>qa-inspector</code>)</b>, <b>Dev (<code>dev-builder</code>)</b> และ <b>Auditor (<code>release-auditor</code>)</b></p>
+
+  <div class="grid">
+    <section class="card">
+      <div class="badge">Sprint 2 Change Requests (New in W4!)</div>
+      <h2>2 ภารกิจด่วนก่อนเปิดใช้งานจริง</h2>
+      <ul class="frame-list">
+        <li><b><code>CR-201</code> · Project หมูกระทะ (Booking App)</b> · ปรับการคิดเงินมัดจำตามจำนวนท่าน (<code>BR-01</code>: 1–2 ท่าน <code>0 บาท</code>, 3–6 ท่าน <code>300 บาท</code>, 7–12 ท่าน <code>1,000 บาท</code> + บังคับ <code>Notes</code>, 13+ บล็อกการจอง), เวลานับถอยหลังชำระ <code>30 นาที</code> (<code>BR-02</code>) และกันกดปุ่มซ้ำ (<code>BR-03</code>)</li>
+        <li><b><code>CR-202</code> · Project ชานมหวานร้อย (E-commerce App)</b> · กติกาโค้ดส่วนลด <code>SWEET11</code> ลด 10% เฉพาะสินค้าที่ป้ายลดเดิม <code>&lt; 50%</code> (ห้ามซ้อนทับโซฟา <code>Lolito -50%</code> ตาม <code>EC-01</code>), ล็อกจำนวน <code>1–5 ชิ้น</code> (<code>EC-02</code>) และแก้คำผิด <code>Sort by</code> + Empty State (<code>EC-03</code>)</li>
+      </ul>
+      <p class="muted">อ่านนโยบายฉบับเต็มใน <code>docs/policies/finance-and-sla-policy.md</code> และใบงานใน <code>docs/change-requests/</code></p>
+    </section>
+
+    <section class="card">
+      <div class="badge">Live Sprint 1 → Sprint 2 App</div>
+      <h2>เปิดดูและทดสอบแอปใน Browser</h2>
+      <p>ไฟล์ <code>ui/preview.html</code> มีโค้ด Sprint 1 ทั้งสองโปรเจกต์ที่ยังมีบั๊กซ่อนอยู่! สาย BA/QA ใช้ตรวจหาจุดผิด และสาย Dev ใช้ <code>dev-builder</code> แก้ไขแล้วกดปุ่มด้านล่างเปิดทดสอบได้ทันที:</p>
+      <div class="actions">
+        <a class="btn" href="ui/preview.html" target="_blank" rel="noopener">เปิด ui/preview.html ↗</a>
+      </div>
+      <p class="muted">เอกสาร Spec ของ BA อยู่ใน <code>outputs/ba/</code> และตาราง Test Cases ของ QA อยู่ใน <code>outputs/qa/</code></p>
+    </section>
+  </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Envydia Sprint 2 · Interactive App Preview (CR-201 &amp; CR-202)</title>
+  <style>
+    :root {
+      --font-sans: 'Montserrat', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --bg-muted: #F6EFE8;
+      --bg-surface: #FFFFFF;
+      --text-primary: #1E293B;
+      --text-muted: #64748B;
+      --accent-primary: #AD3F32;
+      --accent-commerce: #B88E2F;
+      --border-color: #E2E8F0;
+      --radius-md: 8px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 28px 20px;
+      font-family: var(--font-sans);
+      background: var(--bg-muted);
+      color: var(--text-primary);
+      line-height: 1.5;
+    }
+
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    header.top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .status-pill {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #FEF3C7;
+      color: #92400E;
+      border: 1px solid #F59E0B;
+    }
+
+    nav.tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .tab-btn {
+      padding: 10px 18px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      background: var(--bg-surface);
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--text-primary);
+    }
+
+    .tab-btn.active {
+      background: var(--accent-primary);
+      color: #FFFFFF;
+      border-color: var(--accent-primary);
+    }
+
+    section.panel {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+    }
+
+    .hidden { display: none; }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1px solid #CBD5E1;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-family: inherit;
+    }
+
+    .primary-btn {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--accent-primary);
+      color: #FFFFFF;
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .primary-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .summary-box {
+      background: #FFFDF9;
+      border: 1px solid #E5DEC9;
+      border-radius: var(--radius-md);
+      padding: 18px;
+    }
+
+    .deposit-amount {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-primary);
+      margin: 8px 0;
+    }
+
+    .alert-box {
+      padding: 10px 12px;
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      margin-top: 10px;
+      background: #FEF2F2;
+      color: #991B1B;
+      border: 1px solid #FECACA;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      background: #F9F1E7;
+      padding: 14px 18px;
+      border-radius: var(--radius-md);
+      margin-bottom: 20px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .product-card {
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      background: var(--bg-surface);
+      position: relative;
+    }
+
+    .badge-tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      background: #E97171;
+      color: #FFFFFF;
+      margin-bottom: 8px;
+    }
+
+    .badge-tag.new { background: #2EC1AC; }
+
+    .qty-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .qty-btn {
+      width: 34px;
+      height: 34px;
+      border: 1px solid #CBD5E1;
+      background: #F8FAFC;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header class="top-bar">
+    <div>
+      <span class="status-pill" id="buildVersionBadge">Sprint 1 Build (ยังมีบั๊กที่ขัดกับกฎ BR-01..03 และ EC-01..03)</span>
+      <h1 style="margin: 6px 0 0;">Envydia · ระบบจองร้านอาหาร &amp; ร้านค้าออนไลน์</h1>
+    </div>
+    <a href="../index.html" style="color: var(--accent-primary); font-weight: 600;">← กลับหน้า Control Room</a>
+  </header>
+
+  <nav class="tabs" aria-label="Project Switcher">
+    <button type="button" class="tab-btn active" id="tabBookingBtn" onclick="switchTab('booking')">
+      1. Project หมูกระทะ · Booking App (CR-201)
+    </button>
+    <button type="button" class="tab-btn" id="tabEcommerceBtn" onclick="switchTab('ecommerce')">
+      2. Project ชานมหวานร้อย · E-commerce App (CR-202)
+    </button>
+  </nav>
+
+  <!-- ==================== TAB 1: PROJECT หมูกระทะ (CR-201) ==================== -->
+  <section class="panel" id="bookingPanel">
+    <h2 style="margin-top: 0;">ฟอร์มจองโต๊ะและยืนยันเงินมัดจำ (Reservation &amp; Deposit Confirmation)</h2>
+    <div class="two-col">
+      <form id="reservationForm" onsubmit="handleReservationSubmit(event)">
+        <div class="form-group">
+          <label for="branchSelect">สาขาที่ต้องการจอง (Branch)</label>
+          <select id="branchSelect" onchange="updateBookingSummary()">
+            <option value="An BBQ Dong Khoi">An BBQ Dong Khoi</option>
+            <option value="An BBQ Sukhumvit">An BBQ Sukhumvit</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="timeSelect">ช่วงเวลา (Pick your time)</label>
+          <select id="timeSelect" onchange="updateBookingSummary()">
+            <option value="18:30 - 19:00">18:30 - 19:00</option>
+            <option value="19:30 - 20:00">19:30 - 20:00</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="guestCount">จำนวนลูกค้า (How many people?)</label>
+          <!-- [BUG CR-201 #2] Sprint 1 อนุญาตให้ใส่ถึง 50 คน โดยไม่บล็อกที่ 13+ คน ตามกฎ BR-01 -->
+          <input type="number" id="guestCount" value="2" min="1" max="50" oninput="updateBookingSummary()">
+        </div>
+
+        <div class="form-group">
+          <label for="fullName">ชื่อ-นามสกุล (Full name)</label>
+          <input type="text" id="fullName" placeholder="เช่น สมชาย ใจดี" required>
+        </div>
+
+        <div class="form-group">
+          <label for="phoneInput">เบอร์โทรศัพท์ (Phone number)</label>
+          <input type="tel" id="phoneInput" placeholder="081-234-5678" required>
+        </div>
+
+        <div class="form-group">
+          <label for="emailInput">อีเมล (Email)</label>
+          <input type="email" id="emailInput" placeholder="somchai@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="notesInput">หมายเหตุเพิ่มเติม (Notes — บังคับกรอกเมื่อจอง 7–12 ท่านตาม BR-01)</label>
+          <textarea id="notesInput" rows="2" placeholder="ระบุอาหารที่แพ้ หรือขอเก้าอี้เด็ก"></textarea>
+        </div>
+
+        <button type="submit" class="primary-btn" id="reserveBtn">RESERVE (ยืนยันการจอง)</button>
+      </form>
+
+      <div class="summary-box">
+        <h3 style="margin-top: 0;">สรุปรายการจอง (Confirm Reservation)</h3>
+        <p><strong>สาขา:</strong> <span id="summaryBranch">An BBQ Dong Khoi</span></p>
+        <p><strong>เวลา:</strong> <span id="summaryTime">18:30 - 19:00</span></p>
+        <p><strong>จำนวนลูกค้า:</strong> <span id="summaryGuests">2</span> ท่าน</p>
+
+        <hr style="border: 0; border-top: 1px solid #E2E8F0; margin: 14px 0;">
+
+        <div>ยอดเงินมัดจำที่ต้องชำระ (Deposit Amount):</div>
+        <div class="deposit-amount" id="depositDisplay">200 บาท</div>
+        <div id="tierRuleHint" style="font-size: 13px; color: var(--text-muted);">
+          [Sprint 1 Logic] คิดค่ามัดจำตายตัว 200 บาททุกจำนวนคน
+        </div>
+
+        <!-- [BUG CR-201 #3] ข้อความเวลาชำระมัดจำผิดจากกฎ BR-02 (ต้องชำระภายใน 30 นาที และยกเลิกล่วงหน้า 24 ชม. คืน 100%) -->
+        <div class="alert-box" id="paymentHoldNotice">
+          กรุณาชำระเงินมัดจำภายใน <strong>24 ชั่วโมง</strong> (ไม่คืนเงินมัดจำทุกกรณี)
+        </div>
+
+        <h4 style="margin: 18px 0 8px;">ประวัติการกดจองในเซสชันนี้:</h4>
+        <ul id="bookingLog" style="padding-left: 18px; margin: 0; font-size: 14px;"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TAB 2: PROJECT ชานมหวานร้อย (CR-202) ==================== -->
+  <section class="panel hidden" id="ecommercePanel">
+    <h2 style="margin-top: 0;">แคมเปญ 11.11 · Shop Catalog &amp; Promo Cart (`SWEET11`)</h2>
+
+    <div class="toolbar">
+      <div>
+        <label for="categoryFilter" style="display:inline; margin-right:6px;">Filter หมวดหมู่:</label>
+        <select id="categoryFilter" onchange="renderProducts()" style="width:auto;">
+          <option value="all">All Categories</option>
+          <option value="Chairs">Chairs</option>
+          <option value="Sofas">Sofas</option>
+          <option value="Lighting">Lighting (0 items)</option>
+        </select>
+      </div>
+
+      <div>
+        <!-- [BUG CR-202 #3a] สะกดผิดเป็น "Short by" แทนที่จะเป็น "Sort by" ตามกฎ EC-03 -->
+        <label for="sortSelect" id="sortLabel" style="display:inline; margin-right:6px;">Short by:</label>
+        <select id="sortSelect" onchange="renderProducts()" style="width:auto;">
+          <option value="default">Default</option>
+          <option value="price-asc">Price: Low to High</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="product-grid" id="productGrid"></div>
+
+    <div class="summary-box">
+      <h3 style="margin-top: 0;">ตะกร้าคำนวณโปรโมชัน 11.11 (Promo Cart Calculator)</h3>
+      <div class="two-col">
+        <div>
+          <div class="form-group">
+            <label for="productSelect">เลือกสินค้าที่จะสั่งซื้อ (Selected SKU)</label>
+            <select id="productSelect" onchange="updateCartTotal()">
+              <option value="syltherine">Syltherine Cafe Chair (2,500 บาท · ป้ายลด -30%)</option>
+              <option value="asgaard">Asgaard Sofa (25,000 บาท · สินค้า New ลด 0%)</option>
+              <option value="lolito">Lolito Luxury Big Sofa (7,000 บาท · ป้ายลด -50%)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="qtyInput">จำนวนสินค้า (Quantity — กฎ EC-02 กำหนด 1 ถึง 5 ชิ้น)</label>
+            <div class="qty-row">
+              <button type="button" class="qty-btn" onclick="changeQty(-1)">-</button>
+              <!-- [BUG CR-202 #2] Sprint 1 ไม่ได้ล็อกจำนวนไว้ที่ 1-5 ชิ้น -->
+              <input type="number" id="qtyInput" value="1" min="0" max="99" oninput="updateCartTotal()" style="text-align:center; width:90px;">
+              <button type="button" class="qty-btn" onclick="changeQty(1)">+</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="promoInput">โค้ดส่วนลดแคมเปญ (ลองพิมพ์ <code>SWEET11</code>)</label>
+            <input type="text" id="promoInput" placeholder="เช่น SWEET11" oninput="updateCartTotal()">
+          </div>
+        </div>
+
+        <div>
+          <p><strong>ราคาต่อชิ้น:</strong> <span id="unitPriceDisplay">2,500</span> บาท</p>
+          <p><strong>ป้ายส่วนลดเดิมของสินค้า:</strong> <span id="itemBadgeDisplay">-30%</span></p>
+          <p><strong>สถานะโค้ดส่วนลด:</strong> <span id="promoStatusDisplay">ยังไม่ได้ใช้โค้ด</span></p>
+          <div class="deposit-amount" id="cartTotalDisplay">ยอดสุทธิ: 2,500 บาท</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+  const PRODUCTS = [
+    {
+      id: 'syltherine',
+      name: 'Syltherine Cafe Chair',
+      category: 'Chairs',
+      price: 2500,
+      discountPercent: 30,
+      badge: '-30%',
+      description: 'เก้าอี้คาเฟ่ไม้จริงดีไซน์มินิมอล นั่งสบายเหมาะกับร้านอาหารและมุมทำงาน'
+    },
+    {
+      id: 'asgaard',
+      name: 'Asgaard Sofa',
+      category: 'Sofas',
+      price: 25000,
+      discountPercent: 0,
+      badge: 'New',
+      // [BUG CR-202 #3b] คำอธิบายโซฟาผิดเป็นลำโพงพกพา Kilburn / Marshall (ขัดกับกฎ EC-03)
+      description: 'Setting the bar as one of the loudest portable active stereo speakers in its class, the Kilburn takes the unmistakable look and sound of Marshall.'
+    },
+    {
+      id: 'lolito',
+      name: 'Lolito Luxury Big Sofa',
+      category: 'Sofas',
+      price: 7000,
+      discountPercent: 50,
+      badge: '-50%',
+      description: 'โซฟาขนาดใหญ่สำหรับห้องรับแขก ลดราคาพิเศษครึ่งราคาแล้วในแคมเปญใหญ่'
+    }
+  ];
+
+  function switchTab(tab) {
+    const isBooking = tab === 'booking';
+    document.getElementById('bookingPanel').classList.toggle('hidden', !isBooking);
+    document.getElementById('ecommercePanel').classList.toggle('hidden', isBooking);
+    document.getElementById('tabBookingBtn').classList.toggle('active', isBooking);
+    document.getElementById('tabEcommerceBtn').classList.toggle('active', !isBooking);
+  }
+
+  // [BUG CR-201 #1] คิดค่ามัดจำตายตัว 200 บาททุกกรณี (ยังไม่ใช้กฎ BR-01: 1-2=0, 3-6=300, 7-12=1000, 13+=บล็อก)
+  function updateBookingSummary() {
+    const branch = document.getElementById('branchSelect').value;
+    const time = document.getElementById('timeSelect').value;
+    const guests = parseInt(document.getElementById('guestCount').value, 10) || 1;
+
+    document.getElementById('summaryBranch').textContent = branch;
+    document.getElementById('summaryTime').textContent = time;
+    document.getElementById('summaryGuests').textContent = guests;
+
+    const deposit = 200;
+    document.getElementById('depositDisplay').textContent = deposit + ' บาท';
+  }
+
+  // [BUG CR-201 #4] ไม่ได้ป้องกันการกดจองซ้ำ และไม่ได้เช็กช่อง Notes เมื่อจอง 7-12 ท่าน
+  function handleReservationSubmit(event) {
+    event.preventDefault();
+    const branch = document.getElementById('branchSelect').value;
+    const time = document.getElementById('timeSelect').value;
+    const guests = document.getElementById('guestCount').value;
+    const li = document.createElement('li');
+    li.textContent = `จองสำเร็จ: ${branch} (${time}) จำนวน ${guests} ท่าน — มัดจำ 200 บาท`;
+    document.getElementById('bookingLog').appendChild(li);
+  }
+
+  function renderProducts() {
+    const category = document.getElementById('categoryFilter').value;
+    const sort = document.getElementById('sortSelect').value;
+    const grid = document.getElementById('productGrid');
+
+    let list = PRODUCTS.filter(p => category === 'all' || p.category === category);
+    if (sort === 'price-asc') {
+      list = [...list].sort((a, b) => a.price - b.price);
+    }
+
+    // [BUG CR-202 #3c] เมื่อกรองไม่เจอสินค้า (เช่นหมวด Lighting) หน้าจอว่างเปล่า ไม่มี Empty State และปุ่ม Reset Filters
+    grid.innerHTML = list.map(p => `
+      <article class="product-card">
+        <span class="badge-tag ${p.badge === 'New' ? 'new' : ''}">${p.badge}</span>
+        <h3 style="margin: 4px 0;">${p.name}</h3>
+        <p style="font-weight:700; color: var(--accent-commerce); margin: 4px 0;">${p.price.toLocaleString()} บาท</p>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 0;">${p.description}</p>
+      </article>
+    `).join('');
+  }
+
+  function changeQty(delta) {
+    const input = document.getElementById('qtyInput');
+    const next = (parseInt(input.value, 10) || 0) + delta;
+    // [BUG CR-202 #2] ยอมให้ค่าต่ำกว่า 1 หรือเกิน 5 ชิ้นได้
+    input.value = next;
+    updateCartTotal();
+  }
+
+  function updateCartTotal() {
+    const productId = document.getElementById('productSelect').value;
+    const product = PRODUCTS.find(p => p.id === productId) || PRODUCTS[0];
+    const qty = parseInt(document.getElementById('qtyInput').value, 10) || 0;
+    const code = document.getElementById('promoInput').value.trim().toUpperCase();
+
+    document.getElementById('unitPriceDisplay').textContent = product.price.toLocaleString();
+    document.getElementById('itemBadgeDisplay').textContent = product.badge;
+
+    let subtotal = product.price * qty;
+    let statusText = 'ยังไม่ได้ใช้โค้ดส่วนลด';
+
+    // [BUG CR-202 #1] ยอมให้ใช้โค้ด SWEET11 ลดเพิ่ม 10% กับสินค้าทุกตัว รวมถึง Lolito ที่ลด -50% อยู่แล้ว!
+    if (code === 'SWEET11') {
+      subtotal = Math.round(subtotal * 0.9);
+      statusText = 'ใช้โค้ด SWEET11 ลดเพิ่ม 10% สำเร็จ!';
+    }
+
+    document.getElementById('promoStatusDisplay').textContent = statusText;
+    document.getElementById('cartTotalDisplay').textContent = 'ยอดสุทธิ: ' + subtotal.toLocaleString() + ' บาท';
+  }
+
+  updateBookingSummary();
+  renderProducts();
+  updateCartTotal();
+</script>
+</body>
+</html>
