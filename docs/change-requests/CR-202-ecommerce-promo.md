@@ -34,7 +34,7 @@
 4. **กรองหมวดหมู่ที่ไม่มีสินค้าแล้วหน้าจอว่างเปล่า (ขัดกับ `EC-03`):**
    - เมื่อเลือกตัวกรองหมวดหมู่ `Lighting (0 items)` พื้นที่รายการสินค้าว่างเปล่าไปเลย ไม่มีข้อความ Empty State หรือปุ่ม `Reset Filters`
 
-## สิ่งที่แต่ละบทบาทต้องทำใน Lab 4.2 & 4.4
+## สิ่งที่แต่ละบทบาทต้องทำใน Lab 4.2 & 4.3
 
 - **BA (`ba-analyst`):** ใช้ Skill `cr-spec-writer` อ่านไฟล์นี้คู่กับ `docs/policies/finance-and-sla-policy.md` และ `ui/preview.html` เพื่อเขียนเอกสาร **Change Request Functional Spec (`outputs/ba/cr-202-spec.md`)** ที่ระบุตารางเปรียบเทียบ *พฤติกรรมเดิมในโค้ด Sprint 1 vs พฤติกรรมใหม่ตามกฎ `EC-01..03`* พร้อม Acceptance Criteria
 - **QA (`qa-inspector`):** ใช้ Skill `test-matrix-designer` อ่านนโยบาย `EC-01..03` และตรวจโค้ด `ui/preview.html` เพื่อสร้าง **Test Case Matrix & Sprint 1 Bug Log (`outputs/qa/cr-202-test-cases.md`)** ที่ครอบคลุมการซ้อนโค้ด `SWEET11` ในสินค้าแต่ละระดับส่วนลด และค่าขอบเขตจำนวนสินค้า (`0, 1, 5, 6` ชิ้น)

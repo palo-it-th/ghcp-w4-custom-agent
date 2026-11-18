@@ -29,7 +29,7 @@
 4. **กดปุ่ม `RESERVE` ซ้ำรัวๆ ได้ (ขัดกับ `BR-03`):**
    - ปุ่มกดจองยังไม่ได้ป้องกันการกดซ้ำ ทำให้รายการจองถูกเพิ่มซ้ำลงในประวัติเมื่อคลิกรัวๆ
 
-## สิ่งที่แต่ละบทบาทต้องทำใน Lab 4.2 & 4.4
+## สิ่งที่แต่ละบทบาทต้องทำใน Lab 4.2 & 4.3
 
 - **BA (`ba-analyst`):** ใช้ Skill `cr-spec-writer` อ่านไฟล์นี้คู่กับ `docs/policies/finance-and-sla-policy.md` และ `ui/preview.html` เพื่อเขียนเอกสาร **Change Request Functional Spec (`outputs/ba/cr-201-spec.md`)** ที่ระบุตารางเปรียบเทียบ *พฤติกรรมเดิมในโค้ด Sprint 1 vs พฤติกรรมใหม่ตามกฎ `BR-01..03`* พร้อม Acceptance Criteria
 - **QA (`qa-inspector`):** ใช้ Skill `test-matrix-designer` อ่านนโยบาย `BR-01..03` และตรวจโค้ด `ui/preview.html` เพื่อสร้าง **Test Case Matrix & Sprint 1 Bug Log (`outputs/qa/cr-201-test-cases.md`)** ที่ครอบคลุมค่าขอบเขตจำนวนคน (`1, 2, 3, 6, 7, 12, 13` ท่าน)
